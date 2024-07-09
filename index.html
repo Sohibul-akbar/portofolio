@@ -56,6 +56,14 @@
         .login-container input[type="submit"]:hover {
             background-color: #c7bb64;
         }
+        .login-container .show-password {
+            display: flex;
+            align-items: center;
+            margin-top: 10px;
+        }
+        .login-container .show-password input[type="checkbox"] {
+            margin-right: 10px;
+        }
         .message {
             margin-top: 15px;
             color: red;
@@ -79,6 +87,11 @@
         
         <label for="password">Password</label>
         <input type="password" id="password" name="password" required>
+
+        <div class="show-password">
+            <input type="checkbox" id="showPassword">
+            <label for="showPassword">Show Password</label>
+        </div>
         
         <input type="submit" value="Login">
     </form>
@@ -86,6 +99,15 @@
 </div>
 
 <script>
+    document.getElementById('showPassword').addEventListener('change', function() {
+        const passwordField = document.getElementById('password');
+        if (this.checked) {
+            passwordField.type = 'text';
+        } else {
+            passwordField.type = 'password';
+        }
+    });
+
     document.getElementById('loginForm').addEventListener('submit', function(event) {
         event.preventDefault(); // Mencegah pengiriman formulir
 
@@ -95,7 +117,7 @@
 
         // Validasi username dan password
         const validUsername = 'Sohibul Akbar';
-        const validPassword = '111111';
+        const validPassword = '123';
 
         if (username === validUsername && password === validPassword) {
             message.style.color = 'green';
